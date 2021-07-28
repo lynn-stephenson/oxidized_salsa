@@ -9,6 +9,8 @@ fn quarter_round(state: &mut [u32; 16], state_indexes: [usize; 4]) {
 
 #[cfg(test)]
 mod tests {
+    use super::*;
+
     #[test]
     fn quarter_round_test_vector_1() {
         let mut state = [0_u32; 16];
