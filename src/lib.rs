@@ -14,6 +14,13 @@ fn row_round(mut state: &mut [u32; 16]) {
     quarter_round(&mut state, [15, 12, 13, 14]);
 }
 
+fn column_round(mut state: &mut [u32; 16]) {
+    quarter_round(&mut state, [0, 4, 8, 12]);
+    quarter_round(&mut state, [5, 9, 13, 1]);
+    quarter_round(&mut state, [10, 14, 2, 6]);
+    quarter_round(&mut state, [15, 3, 7, 11]);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
