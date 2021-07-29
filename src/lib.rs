@@ -26,6 +26,28 @@ fn double_round(mut state: &mut [u32; 16]) {
     row_round(&mut state);
 }
 
+fn hash(key_stream: &mut [u8; 64]) {
+    let mut state = [0_u32; 16];
+
+    for (index, state_bytes) in key_stream.chunks_exact(4).enumerate() {
+        state[index] = u32::from_le_bytes(
+            std::convert::TryInto::try_into(state_bytes).unwrap()
+        );
+    }
+
+    let original_state = state;
+
+    for _rounds in 0..10 {
+        double_round(&mut state);
+    }
+
+    for (index, state_bytes) in key_stream.chunks_exact_mut(4).enumerate() {
+        state_bytes.copy_from_slice(
+            &(state[index].wrapping_add(original_state[index])).to_le_bytes()
+        );
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
