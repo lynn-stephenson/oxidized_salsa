@@ -147,8 +147,8 @@ fn expand16(
 
 fn expand32(
     key: [u8; 32],
-    nonce: [u8; 8],
-    pos: [u8; 8]
+    number_used_once: [u8; 8],
+    position: [u8; 8]
 ) -> [u8; 64] {
     let constant = [
         b"expa",
@@ -189,25 +189,25 @@ fn expand32(
     key_stream[22] = constant[1][2];
     key_stream[23] = constant[1][3];
 
-    key_stream[24] = nonce[0];
-    key_stream[25] = nonce[1];
-    key_stream[26] = nonce[2];
-    key_stream[27] = nonce[3];
+    key_stream[24] = number_used_once[0];
+    key_stream[25] = number_used_once[1];
+    key_stream[26] = number_used_once[2];
+    key_stream[27] = number_used_once[3];
 
-    key_stream[28] = nonce[4];
-    key_stream[29] = nonce[5];
-    key_stream[30] = nonce[6];
-    key_stream[31] = nonce[7];
+    key_stream[28] = number_used_once[4];
+    key_stream[29] = number_used_once[5];
+    key_stream[30] = number_used_once[6];
+    key_stream[31] = number_used_once[7];
 
-    key_stream[32] = pos[0];
-    key_stream[33] = pos[1];
-    key_stream[34] = pos[2];
-    key_stream[35] = pos[3];
+    key_stream[32] = position[0];
+    key_stream[33] = position[1];
+    key_stream[34] = position[2];
+    key_stream[35] = position[3];
 
-    key_stream[36] = pos[4];
-    key_stream[37] = pos[5];
-    key_stream[38] = pos[6];
-    key_stream[39] = pos[7];
+    key_stream[36] = position[4];
+    key_stream[37] = position[5];
+    key_stream[38] = position[6];
+    key_stream[39] = position[7];
 
     key_stream[40] = constant[2][0];
     key_stream[41] = constant[2][1];
