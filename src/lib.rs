@@ -7,6 +7,13 @@ fn quarter_round(state: &mut [u32; 16], state_indexes: [usize; 4]) {
     state[a] ^= state[d].wrapping_add(state[c]).rotate_left(18);
 }
 
+fn row_round(mut state: &mut [u32; 16]) {
+    quarter_round(&mut state, [0, 1, 2, 3]);
+    quarter_round(&mut state, [5, 6, 7, 4]);
+    quarter_round(&mut state, [10, 11, 8, 9]);
+    quarter_round(&mut state, [15, 12, 13, 14]);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
