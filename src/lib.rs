@@ -544,11 +544,26 @@ mod tests {
     }
 
     #[test]
-    fn encrypt_and_decrypt_test() {
+    fn apply_key_stream16_encryption_and_decryption_test() {
         let mut buffer = "🗻∈🌏";
 
         for _times in 0..1 {
-            apply_key_stream(
+            apply_key_stream16(
+                [0_u8; 16],
+                [0_u8; 8],
+                &mut buffer.as_bytes().to_vec()
+            );
+        }
+
+        assert_eq!(buffer, "🗻∈🌏");
+    }
+
+    #[test]
+    fn apply_key_stream32_encryption_and_decryption_test() {
+        let mut buffer = "🗻∈🌏";
+
+        for _times in 0..1 {
+            apply_key_stream32(
                 [0_u8; 32],
                 [0_u8; 8],
                 &mut buffer.as_bytes().to_vec()
