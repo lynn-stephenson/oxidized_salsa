@@ -62,85 +62,21 @@ fn expand16(
 
     let mut key_stream = [0_u8; 64];
 
-    key_stream[0] = constant[0][0];
-    key_stream[1] = constant[0][1];
-    key_stream[2] = constant[0][2];
-    key_stream[3] = constant[0][3];
+    key_stream[..4].copy_from_slice(constant[0]);
 
-    key_stream[4] = key[0];
-    key_stream[5] = key[1];
-    key_stream[6] = key[2];
-    key_stream[7] = key[3];
+    key_stream[4..20].copy_from_slice(&key);
 
-    key_stream[8] = key[4];
-    key_stream[9] = key[5];
-    key_stream[10] = key[6];
-    key_stream[11] = key[7];
+    key_stream[20..24].copy_from_slice(constant[1]);
 
-    key_stream[12] = key[8];
-    key_stream[13] = key[9];
-    key_stream[14] = key[10];
-    key_stream[15] = key[11];
+    key_stream[24..32].copy_from_slice(&number_used_once);
 
-    key_stream[16] = key[12];
-    key_stream[17] = key[13];
-    key_stream[18] = key[14];
-    key_stream[19] = key[15];
+    key_stream[32..40].copy_from_slice(&position);
 
-    key_stream[20] = constant[1][0];
-    key_stream[21] = constant[1][1];
-    key_stream[22] = constant[1][2];
-    key_stream[23] = constant[1][3];
+    key_stream[40..44].copy_from_slice(constant[2]);
 
-    key_stream[24] = number_used_once[0];
-    key_stream[25] = number_used_once[1];
-    key_stream[26] = number_used_once[2];
-    key_stream[27] = number_used_once[3];
+    key_stream[44..60].copy_from_slice(&key);
 
-    key_stream[28] = number_used_once[4];
-    key_stream[29] = number_used_once[5];
-    key_stream[30] = number_used_once[6];
-    key_stream[31] = number_used_once[7];
-
-    key_stream[32] = position[0];
-    key_stream[33] = position[1];
-    key_stream[34] = position[2];
-    key_stream[35] = position[3];
-
-    key_stream[36] = position[4];
-    key_stream[37] = position[5];
-    key_stream[38] = position[6];
-    key_stream[39] = position[7];
-
-    key_stream[40] = constant[2][0];
-    key_stream[41] = constant[2][1];
-    key_stream[42] = constant[2][2];
-    key_stream[43] = constant[2][3];
-
-    key_stream[44] = key[0];
-    key_stream[45] = key[1];
-    key_stream[46] = key[2];
-    key_stream[47] = key[3];
-
-    key_stream[48] = key[4];
-    key_stream[49] = key[5];
-    key_stream[50] = key[6];
-    key_stream[51] = key[7];
-
-    key_stream[52] = key[8];
-    key_stream[53] = key[9];
-    key_stream[54] = key[10];
-    key_stream[55] = key[11];
-
-    key_stream[56] = key[12];
-    key_stream[57] = key[13];
-    key_stream[58] = key[14];
-    key_stream[59] = key[15];
-
-    key_stream[60] = constant[3][0];
-    key_stream[61] = constant[3][1];
-    key_stream[62] = constant[3][2];
-    key_stream[63] = constant[3][3];
+    key_stream[60..].copy_from_slice(constant[3]);
 
     key_stream
 }
