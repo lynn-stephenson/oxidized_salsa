@@ -630,4 +630,19 @@ mod tests {
             ]
         );
     }
+
+    #[test]
+    fn encrypt_and_decrypt_test() {
+        let mut buffer = "🗻∈🌏";
+
+        for _times in 0..1 {
+            apply_key_stream(
+                [0_u8; 32],
+                [0_u8; 8],
+                &mut buffer.as_bytes().to_vec()
+            );
+        }
+
+        assert_eq!(buffer, "🗻∈🌏");
+    }
 }
