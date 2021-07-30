@@ -242,6 +242,26 @@ fn expand32(
     key_stream
 }
 
+fn apply_key_stream(
+    key: [u8; 32],
+    number_used_once: [u8; 8],
+    buffer: &mut [u8]
+) {
+    for (position, buffer_chunk) in buffer.chunks_mut(64).enumerate() {
+        let mut key_stream = expand32(
+            key,
+            number_used_once,
+            (position as u64).to_ne_bytes()
+        );
+
+        hash(&mut key_stream);
+
+        for index in 0..buffer_chunk.len() {
+            buffer_chunk[index] ^= key_stream[index];
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
