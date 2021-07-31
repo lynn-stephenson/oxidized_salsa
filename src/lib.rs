@@ -78,6 +78,8 @@ fn expand16(
 
     key_stream[60..].copy_from_slice(constant[3]);
 
+    hash(&mut key_stream);
+
     key_stream
 }
 
@@ -110,6 +112,8 @@ fn expand32(
     key_stream[44..60].copy_from_slice(&key[16..]);
 
     key_stream[60..].copy_from_slice(constant[3]);
+
+    hash(&mut key_stream);
 
     key_stream
 }
