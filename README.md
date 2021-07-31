@@ -11,8 +11,9 @@ Please open a GitHub issue for any problems with the library, including security
 
 ### Goals
 
-- [ ] Implement the entire Salsa20 specification in safe Rust.
+- [x] Implement the entire Salsa20 specification in safe Rust.
 - [ ] Support concurrency/multi-threading.
+- [ ] Ciphertext seeking mode.
 
 
 ## Test Vectors
