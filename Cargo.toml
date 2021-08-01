@@ -1,4 +1,4 @@
 [package]
-name = "salsa20"
+name = "oxidized_salsa"
 version = "0.10.1"
 edition = "2018"
